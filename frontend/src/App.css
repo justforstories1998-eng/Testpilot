@@ -1,0 +1,54 @@
+/* ================================================================
+   APP LAYOUT
+   ================================================================ */
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-void);
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - var(--navbar-height));
+}
+
+/* Subtle top border glow on main */
+.app-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--accent-primary-rgb), 0.15) 50%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .app-body {
+    flex-direction: column;
+  }
+
+  .app-main {
+    height: auto;
+    min-height: calc(100vh - var(--navbar-height));
+  }
+}

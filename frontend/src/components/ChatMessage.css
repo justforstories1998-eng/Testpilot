@@ -1,0 +1,235 @@
+/* =================================================================
+   ChatMessage.css — TestPilot v3.1
+   ================================================================= */
+
+/* ------------------------------------------------------------------ */
+/* Message layout                                                      */
+/* ------------------------------------------------------------------ */
+
+.message-bubble {
+  padding: 0.875rem 1.125rem;
+  border-radius: var(--radius-lg);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.user-bubble {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-bottom-right-radius: 2px;
+}
+
+.assistant-bubble {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-bottom-left-radius: 2px;
+}
+
+.error-row .assistant-bubble {
+  background: rgba(239, 68, 68, 0.04);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+
+.streaming {
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+/* ------------------------------------------------------------------ */
+/* Streaming cursor                                                    */
+/* ------------------------------------------------------------------ */
+
+.streaming-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--accent-primary);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,  50%  { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Badge animations                                                    */
+/* ------------------------------------------------------------------ */
+
+.badge-blue .badge-dot {
+  animation: dot-pulse 1.5s ease infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Markdown content                                                    */
+/* ------------------------------------------------------------------ */
+
+.markdown-content p             { margin-bottom: 0.6rem; }
+.markdown-content p:last-child  { margin-bottom: 0; }
+.markdown-content ul,
+.markdown-content ol            { margin: 0.4rem 0 0.4rem 1.25rem; }
+.markdown-content li            { margin-bottom: 0.2rem; }
+.markdown-content strong        { color: #fff; font-weight: 600; }
+.markdown-content a             { color: var(--accent-primary); text-decoration: underline; }
+
+/* ------------------------------------------------------------------ */
+/* Code blocks                                                         */
+/* ------------------------------------------------------------------ */
+
+.code-block-wrapper {
+  margin: 0.75rem 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(0, 0, 0, 0.35);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.markdown-content pre {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Inline cards (test summary, report)                                 */
+/* ------------------------------------------------------------------ */
+
+.inline-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+/* ── Test generation summary ───────────────────────────────────── */
+
+.inline-stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.inline-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.inline-stat.destructive {
+  color: var(--warning);
+}
+
+/* ── Execution report card ─────────────────────────────────────── */
+
+.report-card {
+  border-left: 3px solid var(--accent-primary);
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.report-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.report-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.report-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.report-stat.pass  { color: var(--success); }
+.report-stat.fail  { color: var(--error); }
+
+.report-stat.error {
+  color: var(--warning);
+}
+
+.report-stat.rate {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  /* dynamic color applied inline via style prop */
+}
+
+.report-timing {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.report-download-btn {
+  align-self: flex-start;
+}
+
+/* ------------------------------------------------------------------ */
+/* Destructive tests section                                           */
+/* ------------------------------------------------------------------ */
+
+.destructive-section {
+  padding: 0.6rem;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: var(--radius-md);
+}
+
+.destructive-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--error);
+}
+
+.destructive-list {
+  margin: 0 0 0.5rem 1rem;
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.destructive-list li {
+  margin-bottom: 0.2rem;
+}
