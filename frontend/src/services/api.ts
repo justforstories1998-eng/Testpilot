@@ -23,14 +23,15 @@ import type {
 } from '../types';
 
 /* ---- Axios instances ---- */
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '/api/v1';
 const api = axios.create({
-  baseURL: '/api/v1',
+  baseURL: apiBaseUrl,
   headers: { 'Content-Type': 'application/json' },
   timeout: 30000,
 });
 
 const longApi = axios.create({
-  baseURL: '/api/v1',
+  baseURL: apiBaseUrl,
   headers: { 'Content-Type': 'application/json' },
   timeout: 600000,
 });
