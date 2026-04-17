@@ -15,6 +15,8 @@ TestPilot is an AI-assisted web test generation platform with a React frontend a
    - `GROQ_API_KEY`
    - `PLAYWRIGHT_HEADLESS` (set to `true`)
    - `STORAGE_PATH` (recommended: `../storage`)
+   - `CARGO_HOME` (set to `/tmp/.cargo`)
+   - `RUSTUP_HOME` (set to `/tmp/.rustup`)
 5. Render build command is defined in `render.yaml`.
 
 ### Frontend on Netlify

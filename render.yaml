@@ -3,7 +3,10 @@ services:
     name: testpilot-backend
     env: python
     branch: main
-    buildCommand: cd backend && python -m pip install --upgrade pip && pip install -r requirements.txt
+    buildCommand: |
+      cd backend
+      python -m pip install --upgrade pip setuptools wheel
+      CARGO_HOME=/tmp/.cargo RUSTUP_HOME=/tmp/.rustup pip install -r requirements.txt
     startCommand: cd backend && python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/v1/chat/status
     envVars:
@@ -13,3 +16,7 @@ services:
         value: "true"
       - key: STORAGE_PATH
         value: "../storage"
+      - key: CARGO_HOME
+        value: /tmp/.cargo
+      - key: RUSTUP_HOME
+        value: /tmp/.rustup
