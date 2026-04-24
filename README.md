@@ -17,7 +17,7 @@ TestPilot is an AI-assisted web test generation platform with a React frontend a
    - `STORAGE_PATH` (recommended: `../storage`)
    - `CARGO_HOME` (set to `/tmp/.cargo`)
    - `RUSTUP_HOME` (set to `/tmp/.rustup`)
-5. Render build command is defined in `render.yaml`.
+5. Render build command is defined in `render.yaml` and installs Rust toolchain if missing.
 
 ### Frontend on Netlify
 

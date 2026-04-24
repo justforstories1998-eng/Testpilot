@@ -6,7 +6,14 @@ services:
     buildCommand: |
       cd backend
       python -m pip install --upgrade pip setuptools wheel
-      CARGO_HOME=/tmp/.cargo RUSTUP_HOME=/tmp/.rustup pip install -r requirements.txt
+      export CARGO_HOME=/tmp/.cargo
+      export RUSTUP_HOME=/tmp/.rustup
+      export PATH=$CARGO_HOME/bin:$RUSTUP_HOME/bin:$PATH
+      if ! command -v rustup >/dev/null 2>&1; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain stable
+      fi
+      rustup default stable
+      pip install --no-build-isolation -r requirements.txt
     startCommand: cd backend && python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /api/v1/chat/status
     envVars:
